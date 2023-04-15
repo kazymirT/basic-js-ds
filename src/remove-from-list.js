@@ -22,48 +22,28 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   }
  * }
  */
-function removeKFromList( l, k ) {
-  let numberRemove=k;
-  let current;
-  let next;
-  let indexL=[];
-     function indexOf(k){
-      let current = l;
-      let index = 0;
-      console.log(current);
-      while(current){
-          if(current.value === k){
-              console.log(index);
-              indexL.push(index);
-          }
-          current = current.next;
-          index++;
-      }
-      console.log('-1')
-  }
-  indexOf(k)
-  console.log(indexL)
-     function removeAt(position){  
-      let current = l;
-      if(position === 0){
-          l = current.next;
-      }else{
-          let prev = null;
-          let index = 0;
-          while(index < position){
-              prev = current;
-              current = current.next;
-              index++;
-          }
+function removeKFromList(l, k) {
+    let current = l;
+    let prev = null;
+    
+    while (current) {
+      if (current.value === k) {
+        // Якщо поточний вузол містить k, пропускаємо його, оновлюючи посилання з попереднього вузла
+        if (prev) {
           prev.next = current.next;
+        } else {
+          l = current.next;
+        }
+      } else {
+        prev = current;
       }
-      this.length--;
-      return current.value;
+      current = current.next;
+    }
+    
+    return l;
   }
-  indexL.reverse().forEach(e=>removeAt(e))
-  // console.log(removeAt(0))
-  return l;
-}
+  
+  
 
 module.exports = {
   removeKFromList
