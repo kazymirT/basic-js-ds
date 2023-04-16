@@ -28,7 +28,6 @@ function removeKFromList(l, k) {
     
     while (current) {
       if (current.value === k) {
-        // Якщо поточний вузол містить k, пропускаємо його, оновлюючи посилання з попереднього вузла
         if (prev) {
           prev.next = current.next;
         } else {
